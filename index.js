@@ -1,3 +1,4 @@
+const env = require('dotenv').config(); // read .env and merges it into process.env
 const express = require("express");
 const helmet = require("helmet");
 const knex = require("knex");
@@ -20,7 +21,7 @@ server.use(helmet());
 server.use(express.json());
 
 server.get("/", async (req, res) => {
-    res.send("It's Alive!")
+    res.status(200).json({messageOfTheDay: process.env.MOTD})
 });
 
 // GET all
