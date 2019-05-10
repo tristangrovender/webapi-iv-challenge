@@ -19,6 +19,10 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 
+server.get("/", async (req, res) => {
+    res.send("It's Alive!")
+});
+
 // GET all
 server.get("/api/cohorts", async (req, res) => {
   try {
