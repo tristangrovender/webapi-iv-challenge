@@ -21,7 +21,14 @@ server.use(helmet());
 server.use(express.json());
 
 server.get("/", async (req, res) => {
-    res.status(200).json({messageOfTheDay: process.env.MOTD})
+    try {
+      res.status(200).json({
+        messageOfTheDay: process.env.MOTD
+      });
+    } catch (error) {
+      console.error('\nERROR', error);
+      res.status(500).json(error)
+    }
 });
 
 // GET all
